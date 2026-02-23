@@ -1,3 +1,5 @@
+<<<<<<< # BlogApp
+Laravel Blog Application
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -57,3 +59,7 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+=======
+# BlogApp
+This my Final Project on University Year2 Part2
+>>>>>>> 1de5523e3fe61e6dadbf4f6d71bcb7b62965c939
