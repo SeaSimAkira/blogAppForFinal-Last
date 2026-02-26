@@ -2,22 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
     /**
      * Apply authentication middleware
      */
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
     public function __construct()
     {
-        $this->middleware('auth');
+        // Everyone (admin, editor, user, viewer) can view posts
+        $this->middleware('checkUserRole:admin,editor,user,viewer')
+        ->only(['index','show']);
+        // Create: admin, editor, user
+        $this->middleware('checkUserRole:admin,editor,user')
+        ->only(['create','store']);
+        // Edit/Update: admin, editor
+        $this->middleware('checkUserRole:admin,editor')
+        ->only(['edit','update']);
+        // Delete: admin only
+        $this->middleware('checkUserRole:admin')->only(['destroy']);
+        // Trash/Restore/ForceDelete: admin only
+        $this->middleware('checkUserRole:admin')
+        ->only(['trash','restore','forceDelete']);
+        View::share('trashCount', Post::onlyTrashed()->count());
     }
+
 
     /**
      * Display a listing of posts

@@ -11,10 +11,18 @@ use Illuminate\View\View;
 | Public Route
 |--------------------------------------------------------------------------
 */
-Route::get('/', function (): View {
-    return view('welcome');
-});
-
+ Route::get('/', function (): View {
+     return view('welcome');
+ });
+// Route::get('/', function () {
+//     return redirect()->route('login');
+// });
+//    Route::get('/', function () {
+//        if(auth()->check()) {
+//            return redirect()->route('dashboard');
+//        }
+//        return redirect()->route('login');
+  //  });
 
 /*
 |--------------------------------------------------------------------------
@@ -23,10 +31,14 @@ Route::get('/', function (): View {
 */
 Route::middleware('guest')->group(function () {
 
+
+    //Route::get('/', [AuthController::class, 'login_form'])->name('login');
+    // php artisan route:clear
+    // php artisan cache:clear
     Route::get('/login', [AuthController::class, 'login_form'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
-    Route::get('/register', [AuthController::class, 'register_form'])->name('register');
-    Route::post('/register', [AuthController::class, 'register']);
+    //Route::get('/register', [AuthController::class, 'register_form'])->name('register');
+    //Route::post('/register', [AuthController::class, 'register']);
 
 });
 
@@ -63,8 +75,8 @@ Route::middleware(['auth', 'checkUserRole:admin'])->group(function () {
     // User Management
     Route::resource('users', AuthController::class)->except(['create', 'store']);
 
-    // Route::get('/register', [AuthController::class, 'register_form'])->name('register');
-    // Route::post('/register', [AuthController::class, 'register']);
+    Route::get('/register', [AuthController::class, 'register_form'])->name('register');
+    Route::post('/register', [AuthController::class, 'register']);
 
 });
 /*

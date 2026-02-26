@@ -55,8 +55,8 @@
                 <i class="bi bi-list"></i>
               </a>
             </li>
-            <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Home</a></li>
-            <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Contact</a></li>
+            <li class="nav-item d-none d-md-block"><a href="{{ route('posts.index') }}" class="nav-link">Home</a></li>
+            <li class="nav-item d-none d-md-block"><a href="https://github.com/SeaSimAkira"  class="nav-link">Contact</a></li>
           </ul>
           <!--end::Start Navbar Links-->
           <!--begin::End Navbar Links-->
@@ -329,17 +329,14 @@
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
-                  <li class="nav-item">
+                  {{-- <li class="nav-item">
                     <a href="{{ route('users.index') }}" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Users</p>
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-lte-toggle="treeview" role="menu">
-
-                        {{-- Dashboard --}}
-                        @auth
+                  <li class="nav-item"> --}}
+                    @auth
                         <li class="nav-item">
                             <a href="{{ route('dashboard') }}"
                                class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
@@ -348,6 +345,25 @@
                             </a>
                         </li>
                         @endauth
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-lte-toggle="treeview" role="menu">
+
+                        {{-- Dashboard --}}
+                        {{-- @auth
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard') }}"
+                               class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                                <i class="nav-icon bi bi-speedometer"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+                        @endauth --}}
+                        <li class="nav-item">
+                            <a href="{{ route('users.index') }}" class="nav-link">
+                              <i class="nav-icon bi bi-circle"></i>
+                              <p>Users</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
 
                         {{-- Posts --}}
                         @auth
