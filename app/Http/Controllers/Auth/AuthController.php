@@ -178,6 +178,13 @@ class AuthController extends Controller
         'email' => ['required', 'email'],
         'password' => ['required'],
     ]);
+    // Auth::user()->update([
+    //     'last_login_at' => now()
+
+    // ]);
+    $activeUsers = User::where(
+        'last_login_at','>=',now()->subMinutes(10)
+    )->count();
 
     if (Auth::attempt($credentials, $request->boolean('remember'))) {
 

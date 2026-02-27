@@ -80,7 +80,8 @@
 
                         <form action="{{ route('posts.destroy', $post->id) }}"
                               method="POST"
-                              class="d-inline">
+                              class="d-inline"
+                              onsubmit="return confirm('Are you sure you want to delete this Post?');">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger btn-sm" >
